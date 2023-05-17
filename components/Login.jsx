@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { account } from '@/appwriteConfig';
 import { useRouter } from 'next/navigation';
-import { getServerSession } from 'next-auth/next';
+import classes from './Form.module.css';
 
 const Login = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const Login = () => {
           router.push('/profile');
         },
         (error) => {
-          console.log(error);
+          alert(error);
         }
       )
       .finally(() => {
@@ -36,26 +36,36 @@ const Login = () => {
   };
 
   return (
-    <form action="">
-      <label htmlFor="email">email</label>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-      />
-      <label htmlFor="passw">Password</label>
-      <input
-        type="text"
-        name="passw"
-        id="passw"
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-      />
+    <div className={classes.form__container}>
+      <h1 className={classes.title}>Login</h1>
 
-      <button onClick={logInHandler}>
-        {loading ? 'Loading...' : 'Log In'}
-      </button>
-    </form>
+      <form action="" className={classes.form__}>
+        <label htmlFor="email" className={classes.label}>
+          Email
+        </label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          className={classes.input}
+        />
+        <label htmlFor="passw" className={classes.label}>
+          Password
+        </label>
+        <input
+          type="text"
+          name="passw"
+          id="passw"
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          className={classes.input}
+        />
+
+        <button onClick={logInHandler} className={classes.button}>
+          {loading ? 'Loading...' : 'Log In'}
+        </button>
+      </form>
+    </div>
   );
 };
 

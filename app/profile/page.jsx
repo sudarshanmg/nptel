@@ -8,6 +8,7 @@ const Profile = () => {
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -15,7 +16,7 @@ const Profile = () => {
       const promise = account.get();
       promise.then(
         function (response) {
-          console.log(response);
+          setName(response.name);
           if (response.prefs.admin === 'true') {
             router.replace('/admin');
           } // Success
@@ -48,7 +49,23 @@ const Profile = () => {
       {loading ? (
         <p> Loading.. </p>
       ) : (
-        <button onClick={signOutHandler}>Logout</button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <h2 style={{ textAlign: 'center' }}>
+            Hi {name}! Ide nin profile, innu design maadilla. Log out aagu 😊
+          </h2>
+          <button
+            onClick={signOutHandler}
+            style={{ width: '5rem', height: '2rem' }}
+          >
+            Logout
+          </button>
+        </div>
       )}
     </>
   );

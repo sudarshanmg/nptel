@@ -3,8 +3,3 @@
   --bg-secondary: #eed6c4;
   --text-primary: #483434;
 }
-
-body {
-  background-color: var(--bg-secondary);
-  color: #483434;
-}

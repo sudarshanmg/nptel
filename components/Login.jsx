@@ -24,7 +24,6 @@ const Login = () => {
     promise
       .then(
         (response) => {
-          console.log(response);
           router.push('/profile');
         },
         (error) => {

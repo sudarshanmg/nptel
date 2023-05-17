@@ -5,6 +5,7 @@ import React from 'react';
 const Home = () => {
   return (
     <div>
+      <h1>NPTEL Management System</h1>
       <Signup />
       <Login />
     </div>

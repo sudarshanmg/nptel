@@ -15,7 +15,10 @@ const Profile = () => {
       const promise = account.get();
       promise.then(
         function (response) {
-          console.log(response); // Success
+          console.log(response);
+          if (response.prefs.admin === 'true') {
+            router.replace('/admin');
+          } // Success
           setLoading(false);
         },
         function (error) {

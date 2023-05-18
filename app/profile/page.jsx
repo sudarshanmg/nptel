@@ -19,8 +19,9 @@ const Profile = () => {
           setName(response.name);
           if (response.prefs.admin === 'true') {
             router.replace('/admin');
-          } // Success
-          setLoading(false);
+          } else {
+            setLoading(false);
+          }
         },
         function (error) {
           console.log(error);

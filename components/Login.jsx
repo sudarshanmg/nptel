@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { account } from '@/appwriteConfig';
 import { useRouter } from 'next/navigation';
-import classes from './Form.module.css';
+import Input from './Input';
+import Button from './Button';
 
 const Login = () => {
   const router = useRouter();
@@ -12,7 +13,6 @@ const Login = () => {
     email: '',
     password: '',
   });
-
   const [loading, setLoading] = useState(false);
 
   const logInHandler = async (e) => {
@@ -36,35 +36,53 @@ const Login = () => {
   };
 
   return (
-    <div className={classes.form__container}>
-      <h1 className={classes.title}>Login</h1>
+    <div
+      className="
+            mt-8
+            sm:mx-auto
+            sm:w-full
+            sm:max-w-md
+        "
+    >
+      <div
+        className="
+            bg-white
+            px-4
+            py-8
+            shadow
+            sm:rounded-lg
+            sm:px-10
+        "
+      >
+        <form className="space-y-6" onSubmit={logInHandler}>
+          <Input
+            id="email"
+            label="Email adress"
+            type="email"
+            onChange={(e) => {
+              setUser((prev) => {
+                return { ...prev, email: e.target.value };
+              });
+            }}
+          />
 
-      <form action="" className={classes.form__}>
-        <label htmlFor="email" className={classes.label}>
-          Email
-        </label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-          className={classes.input}
-        />
-        <label htmlFor="passw" className={classes.label}>
-          Password
-        </label>
-        <input
-          type="text"
-          name="passw"
-          id="passw"
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-          className={classes.input}
-        />
-
-        <button onClick={logInHandler} className={classes.button}>
-          {loading ? 'Loading...' : 'Log In'}
-        </button>
-      </form>
+          <Input
+            id="password"
+            label="Password"
+            type="password"
+            onChange={(e) => {
+              setUser((prev) => {
+                return { ...prev, password: e.target.value };
+              });
+            }}
+          />
+          <div>
+            <Button fullWidth type="submit" disabled={loading}>
+              Sign In
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

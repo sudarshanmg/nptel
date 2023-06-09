@@ -5,7 +5,8 @@ import { account } from '@/appwriteConfig';
 import { useRouter } from 'next/navigation';
 import { v4 as uuid } from 'uuid';
 
-import classes from './Form.module.css';
+import Input from './Input';
+import Button from './Button';
 
 const Signup = () => {
   const router = useRouter();
@@ -45,42 +46,63 @@ const Signup = () => {
   };
 
   return (
-    <div className={classes.form__container}>
-      <h1 className={classes.title}>Sign Up</h1>
-      <form action="" className={classes.form__}>
-        <label htmlFor="name" className={classes.label}>
-          Name
-        </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          className={classes.input}
-          onChange={(e) => setUser({ ...user, name: e.target.value })}
-        />
-        <label htmlFor="passw" className={classes.label}>
-          Password
-        </label>
-        <input
-          type="text"
-          name="passw"
-          id="passw"
-          className={classes.input}
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-        />
-        <label htmlFor="email">email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          className={classes.input}
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-        />
+    <div
+      className="
+            mt-8
+            sm:mx-auto
+            sm:w-full
+            sm:max-w-md
+        "
+    >
+      <div
+        className="
+            bg-white
+            px-4
+            py-8
+            shadow
+            sm:rounded-lg
+            sm:px-10
+        "
+      >
+        <form className="space-y-6" onSubmit={signUpHandler}>
+          <Input
+            id="name"
+            label="Username"
+            type="text"
+            onChange={(e) => {
+              setUser((prev) => {
+                return { ...prev, name: e.target.value };
+              });
+            }}
+          />
+          <Input
+            id="email"
+            label="Email adress"
+            type="email"
+            onChange={(e) => {
+              setUser((prev) => {
+                return { ...prev, email: e.target.value };
+              });
+            }}
+          />
 
-        <button onClick={signUpHandler} className={classes.button}>
-          {loading ? 'Loading...' : 'Create'}
-        </button>
-      </form>
+          <Input
+            id="password"
+            label="Password"
+            type="password"
+            onChange={(e) => {
+              setUser((prev) => {
+                return { ...prev, password: e.target.value };
+              });
+            }}
+          />
+          <div>
+            <Button fullWidth type="submit" disabled={loading}>
+              Sign Up
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -12,6 +12,7 @@ const CourseForm = (props) => {
   const [newCourse, setNewCourse] = useState({
     courseTitle: '',
     weeks: '',
+    examDate: '',
   });
   const submitHandler = (e) => {
     e.preventDefault();
@@ -27,10 +28,6 @@ const CourseForm = (props) => {
       (res) => {
         console.log(res);
         location.reload();
-        setNewCourse({
-          courseTitle: '',
-          weeks: '',
-        });
       },
       (err) => {
         console.log(err);
@@ -82,6 +79,17 @@ const CourseForm = (props) => {
             onChange={(e) => {
               setNewCourse((prev) => {
                 return { ...prev, weeks: e.target.value };
+              });
+            }}
+          />
+
+          <Input
+            id="date"
+            label="Exam date"
+            type="date"
+            onChange={(e) => {
+              setNewCourse((prev) => {
+                return { ...prev, examDate: e.target.value };
               });
             }}
           />

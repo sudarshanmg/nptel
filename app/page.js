@@ -10,7 +10,9 @@ const Home = () => {
   const [showSignup, setShowSignup] = useState(false);
   return (
     <div className="m-2 flex flex-col justify-center items-center h-screen">
-      <h1 className="text-3xl font-bold">NPTEL Management System</h1>
+      <h1 className="text-3xl font-bold text-center">
+        NPTEL Management System
+      </h1>
       {showSignup ? <Signup /> : <Login />}
       <div className="mt-2">
         <Button

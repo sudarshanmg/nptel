@@ -2,7 +2,17 @@
 
 import clsx from 'clsx';
 
-const Input = ({ label, id, type, onChange, errors, register, disabled }) => {
+const Input = ({
+  label,
+  id,
+  type,
+  onChange,
+  errors,
+  register,
+  disabled,
+  value,
+  placeholder,
+}) => {
   return (
     <div>
       <label
@@ -24,6 +34,8 @@ const Input = ({ label, id, type, onChange, errors, register, disabled }) => {
           disabled={disabled}
           autoComplete={id}
           onChange={onChange}
+          value={value}
+          placeholder={placeholder}
           className={clsx(
             `
                     form-input
